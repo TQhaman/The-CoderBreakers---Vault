@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>The codebreakers - The Vault</ApplicationTitle>
+		<ApplicationTitle>VAULT</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.thecodebreakersthevault</ApplicationId>

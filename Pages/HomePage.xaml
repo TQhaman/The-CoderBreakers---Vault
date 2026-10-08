@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="The_codebreakers___The_Vault.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource VaultBackground}"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="28,52,28,32"
+            Spacing="22"
+            HorizontalOptions="Center"
+            MaximumWidthRequest="520">
+
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="VAULT"
+                    TextColor="{StaticResource VaultGreen}"
+                    FontSize="48"
+                    FontAttributes="Bold"
+                    CharacterSpacing="8"
+                    HorizontalTextAlignment="Center"
+                    SemanticProperties.HeadingLevel="Level1" />
+                <Label
+                    Text="THE CODEBREAKERS"
+                    TextColor="{StaticResource VaultPurple}"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    CharacterSpacing="3"
+                    HorizontalTextAlignment="Center" />
+                <Label
+                    Text="Crack the code. Open the vault."
+                    TextColor="{StaticResource VaultMuted}"
+                    FontSize="16"
+                    HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="PLAYER NICKNAME"
+                        TextColor="{StaticResource VaultMuted}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        CharacterSpacing="1.5" />
+                    <Entry
+                        x:Name="NicknameEntry"
+                        Style="{StaticResource VaultEntry}"
+                        Placeholder="Enter your nickname"
+                        MaxLength="20"
+                        ReturnType="Done"
+                        Completed="OnPlayClicked" />
+                    <Label
+                        x:Name="NicknameErrorLabel"
+                        TextColor="{StaticResource VaultError}"
+                        FontSize="13"
+                        IsVisible="False" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="SELECT DIFFICULTY"
+                        TextColor="{StaticResource VaultMuted}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        CharacterSpacing="1.5" />
+                    <RadioButton
+                        x:Name="NormalRadioButton"
+                        Content="Normal — 3 digits"
+                        GroupName="Difficulty"
+                        IsChecked="True"
+                        TextColor="{StaticResource VaultText}" />
+                    <RadioButton
+                        x:Name="ExpertRadioButton"
+                        Content="Expert — 4 digits"
+                        GroupName="Difficulty"
+                        TextColor="{StaticResource VaultText}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button
+                Text="ENTER THE VAULT"
+                Style="{StaticResource VaultPrimaryButton}"
+                Clicked="OnPlayClicked" />
+
+            <Button
+                Text="HOW TO PLAY"
+                Style="{StaticResource VaultOutlineButton}"
+                Clicked="OnHowToPlayClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -9,6 +9,51 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="VaultCard" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{StaticResource VaultSurface}" />
+                <Setter Property="Stroke" Value="{StaticResource VaultBorder}" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Padding" Value="18" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 18" />
+            </Style>
+
+            <Style x:Key="VaultEntry" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource VaultSurfaceAlt}" />
+                <Setter Property="TextColor" Value="{StaticResource VaultText}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource VaultMuted}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HeightRequest" Value="54" />
+            </Style>
+
+            <Style x:Key="VaultPrimaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource VaultGreen}" />
+                <Setter Property="TextColor" Value="{StaticResource VaultBackground}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="HeightRequest" Value="54" />
+            </Style>
+
+            <Style x:Key="VaultSecondaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource VaultPurple}" />
+                <Setter Property="TextColor" Value="{StaticResource VaultText}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="HeightRequest" Value="54" />
+            </Style>
+
+            <Style x:Key="VaultOutlineButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{StaticResource VaultGreen}" />
+                <Setter Property="BorderColor" Value="{StaticResource VaultGreen}" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="HeightRequest" Value="54" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

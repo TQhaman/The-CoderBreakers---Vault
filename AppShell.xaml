@@ -3,12 +3,16 @@
     x:Class="The_codebreakers___The_Vault.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:The_codebreakers___The_Vault"
-    Title="The_codebreakers___The_Vault">
+    xmlns:pages="clr-namespace:The_codebreakers___The_Vault.Pages"
+    Title="VAULT"
+    FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource VaultBackground}"
+    Shell.ForegroundColor="{StaticResource VaultText}"
+    Shell.TitleColor="{StaticResource VaultText}">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate pages:HomePage}"
+        Route="HomePage" />
 
 </Shell>

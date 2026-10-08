@@ -19,6 +19,17 @@
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
 
+    <!-- VAULT palette -->
+    <Color x:Key="VaultBackground">#08090D</Color>
+    <Color x:Key="VaultSurface">#12151C</Color>
+    <Color x:Key="VaultSurfaceAlt">#1A1E28</Color>
+    <Color x:Key="VaultBorder">#303747</Color>
+    <Color x:Key="VaultGreen">#41FF8A</Color>
+    <Color x:Key="VaultPurple">#7C4DFF</Color>
+    <Color x:Key="VaultText">#F4F7FA</Color>
+    <Color x:Key="VaultMuted">#9BA5B5</Color>
+    <Color x:Key="VaultError">#FF6B7A</Color>
+
     <Color x:Key="Gray100">#E1E1E1</Color>
     <Color x:Key="Gray200">#C8C8C8</Color>
     <Color x:Key="Gray300">#ACACAC</Color>

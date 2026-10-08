@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="The_codebreakers___The_Vault.Pages.GamePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gameLogic="clr-namespace:The_codebreakers___The_Vault.GameLogic"
+    BackgroundColor="{StaticResource VaultBackground}"
+    Shell.NavBarIsVisible="False">
+
+    <Grid
+        Padding="20,28,20,20"
+        RowDefinitions="Auto,Auto,*,Auto"
+        RowSpacing="16"
+        MaximumWidthRequest="720"
+        HorizontalOptions="Center">
+
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+            <VerticalStackLayout Spacing="2">
+                <Label
+                    Text="VAULT"
+                    TextColor="{StaticResource VaultGreen}"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    CharacterSpacing="4" />
+                <Label
+                    x:Name="PlayerLabel"
+                    TextColor="{StaticResource VaultText}"
+                    FontSize="16" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="End">
+                <Label
+                    x:Name="DifficultyLabel"
+                    TextColor="{StaticResource VaultPurple}"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="End" />
+                <Label
+                    x:Name="GuessCountLabel"
+                    Text="Guesses: 0"
+                    TextColor="{StaticResource VaultMuted}"
+                    FontSize="14"
+                    HorizontalTextAlignment="End" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <Border Grid.Row="1" Style="{StaticResource VaultCard}">
+            <VerticalStackLayout Spacing="12">
+                <Label
+                    x:Name="InstructionLabel"
+                    TextColor="{StaticResource VaultText}"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                    <Entry
+                        x:Name="GuessEntry"
+                        Style="{StaticResource VaultEntry}"
+                        Placeholder="Enter your guess"
+                        Keyboard="Numeric"
+                        MaxLength="4"
+                        ReturnType="Done"
+                        Completed="OnCheckGuessClicked" />
+                    <Button
+                        x:Name="CheckGuessButton"
+                        Grid.Column="1"
+                        Text="CHECK"
+                        Style="{StaticResource VaultPrimaryButton}"
+                        Clicked="OnCheckGuessClicked" />
+                </Grid>
+                <Label
+                    x:Name="ValidationLabel"
+                    TextColor="{StaticResource VaultError}"
+                    FontSize="14"
+                    IsVisible="False" />
+                <Label
+                    x:Name="FeedbackLabel"
+                    TextColor="{StaticResource VaultGreen}"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    IsVisible="False" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Grid Grid.Row="2" RowDefinitions="Auto,*" RowSpacing="8">
+            <Label
+                Text="GUESS HISTORY"
+                TextColor="{StaticResource VaultMuted}"
+                FontSize="12"
+                FontAttributes="Bold"
+                CharacterSpacing="1.5" />
+
+            <CollectionView
+                x:Name="GuessHistoryView"
+                Grid.Row="1"
+                SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <Label
+                        Text="Your valid guesses will appear here."
+                        TextColor="{StaticResource VaultMuted}"
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="gameLogic:GuessResult">
+                        <Border
+                            Margin="0,0,0,8"
+                            Padding="14"
+                            BackgroundColor="{StaticResource VaultSurface}"
+                            Stroke="{StaticResource VaultBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12">
+                            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
+                                <Label
+                                    Text="{Binding GuessNumber, StringFormat='Guess {0}'}"
+                                    TextColor="{StaticResource VaultMuted}"
+                                    FontSize="13" />
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Guess}"
+                                    TextColor="{StaticResource VaultText}"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    CharacterSpacing="3" />
+                                <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2" Spacing="12">
+                                    <Label
+                                        Text="{Binding Hits, StringFormat='{0} Hit(s)'}"
+                                        TextColor="{StaticResource VaultGreen}"
+                                        FontSize="14" />
+                                    <Label
+                                        Text="{Binding Matches, StringFormat='{0} Match(es)'}"
+                                        TextColor="{StaticResource VaultPurple}"
+                                        FontSize="14" />
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <Button
+            Grid.Row="3"
+            Text="QUIT GAME"
+            Style="{StaticResource VaultOutlineButton}"
+            Clicked="OnQuitGameClicked" />
+    </Grid>
+</ContentPage>
