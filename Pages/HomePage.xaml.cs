@@ -1,3 +1,5 @@
+using The_codebreakers___The_Vault.Services;
+
 namespace The_codebreakers___The_Vault.Pages
 {
     public partial class HomePage : ContentPage
@@ -5,6 +7,13 @@ namespace The_codebreakers___The_Vault.Pages
         public HomePage()
         {
             InitializeComponent();
+
+            string savedNickname = StatisticsService.GetPlayerNickname();
+
+            if (!string.IsNullOrWhiteSpace(savedNickname))
+            {
+                NicknameEntry.Text = savedNickname;
+            }
         }
 
         private async void OnPlayClicked(object? sender, EventArgs e)
@@ -20,6 +29,7 @@ namespace The_codebreakers___The_Vault.Pages
 
             NicknameErrorLabel.IsVisible = false;
             int codeLength = ExpertRadioButton.IsChecked ? 4 : 3;
+            StatisticsService.SavePlayerNickname(nickname);
 
             var navigationParameters = new Dictionary<string, object>
             {
@@ -28,6 +38,11 @@ namespace The_codebreakers___The_Vault.Pages
             };
 
             await Shell.Current.GoToAsync(nameof(GamePage), navigationParameters);
+        }
+
+        private async void OnStatisticsClicked(object? sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(StatisticsPage));
         }
 
         private async void OnHowToPlayClicked(object? sender, EventArgs e)

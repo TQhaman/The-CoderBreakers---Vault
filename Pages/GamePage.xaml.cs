@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Dispatching;
 using The_codebreakers___The_Vault.GameLogic;
+using The_codebreakers___The_Vault.Services;
 
 namespace The_codebreakers___The_Vault.Pages
 {
@@ -13,6 +14,7 @@ namespace The_codebreakers___The_Vault.Pages
         private int _codeLength = 3;
         private int _elapsedSeconds;
         private bool _isQuitConfirmationOpen;
+        private bool _hasRecordedCurrentGameStart;
 
         public GamePage()
         {
@@ -37,9 +39,16 @@ namespace The_codebreakers___The_Vault.Pages
 
         private void StartGame()
         {
+            if (_hasRecordedCurrentGameStart)
+            {
+                return;
+            }
+
             StopGameTimer();
             _gameEngine = new GameEngine(_codeLength);
             _visibleHistory.Clear();
+            StatisticsService.RecordGameStarted(_codeLength);
+            _hasRecordedCurrentGameStart = true;
 
             PlayerLabel.Text = $"Player: {_nickname}";
             DifficultyLabel.Text = _codeLength == 4 ? "EXPERT · 4 DIGITS" : "NORMAL · 3 DIGITS";
@@ -123,6 +132,10 @@ namespace The_codebreakers___The_Vault.Pages
             }
 
             StopGameTimer();
+            StatisticsService.RecordWin(
+                _gameEngine.CodeLength,
+                _gameEngine.GuessCount,
+                _elapsedSeconds);
             CheckGuessButton.IsEnabled = false;
             GuessEntry.IsEnabled = false;
 

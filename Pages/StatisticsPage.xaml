@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="The_codebreakers___The_Vault.Pages.StatisticsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource VaultBackground}"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="28,44,28,32"
+            Spacing="20"
+            HorizontalOptions="Center"
+            MaximumWidthRequest="560">
+
+            <VerticalStackLayout Spacing="4">
+                <Label
+                    Text="STATISTICS"
+                    TextColor="{StaticResource VaultGreen}"
+                    FontSize="34"
+                    FontAttributes="Bold"
+                    CharacterSpacing="3"
+                    HorizontalTextAlignment="Center"
+                    SemanticProperties.HeadingLevel="Level1" />
+                <Label
+                    Text="LOCAL ARCADE PROFILE"
+                    TextColor="{StaticResource VaultMuted}"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="14">
+                    <VerticalStackLayout Spacing="2">
+                        <Label
+                            Text="NORMAL"
+                            TextColor="{StaticResource VaultGreen}"
+                            FontSize="22"
+                            FontAttributes="Bold" />
+                        <Label
+                            Text="3 digits"
+                            TextColor="{StaticResource VaultMuted}"
+                            FontSize="14" />
+                    </VerticalStackLayout>
+
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="11">
+                        <Label Text="Games Played" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="NormalGamesPlayedLabel" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="1" Text="Games Won" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="NormalGamesWonLabel" Grid.Row="1" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="2" Text="Win Rate" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="NormalWinRateLabel" Grid.Row="2" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="3" Text="Best Score" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="NormalBestScoreLabel" Grid.Row="3" Grid.Column="1" TextColor="{StaticResource VaultGreen}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="4" Text="Best Time" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="NormalBestTimeLabel" Grid.Row="4" Grid.Column="1" TextColor="{StaticResource VaultGreen}" FontAttributes="Bold" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="14">
+                    <VerticalStackLayout Spacing="2">
+                        <Label
+                            Text="EXPERT"
+                            TextColor="{StaticResource VaultPurple}"
+                            FontSize="22"
+                            FontAttributes="Bold" />
+                        <Label
+                            Text="4 digits"
+                            TextColor="{StaticResource VaultMuted}"
+                            FontSize="14" />
+                    </VerticalStackLayout>
+
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="11">
+                        <Label Text="Games Played" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="ExpertGamesPlayedLabel" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="1" Text="Games Won" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="ExpertGamesWonLabel" Grid.Row="1" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="2" Text="Win Rate" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="ExpertWinRateLabel" Grid.Row="2" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="3" Text="Best Score" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="ExpertBestScoreLabel" Grid.Row="3" Grid.Column="1" TextColor="{StaticResource VaultPurple}" FontAttributes="Bold" />
+
+                        <Label Grid.Row="4" Text="Best Time" TextColor="{StaticResource VaultMuted}" />
+                        <Label x:Name="ExpertBestTimeLabel" Grid.Row="4" Grid.Column="1" TextColor="{StaticResource VaultPurple}" FontAttributes="Bold" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button
+                Text="RESET STATISTICS"
+                Style="{StaticResource VaultOutlineButton}"
+                Clicked="OnResetStatisticsClicked" />
+
+            <Button
+                Text="BACK TO HOME"
+                Style="{StaticResource VaultSecondaryButton}"
+                Clicked="OnHomeClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

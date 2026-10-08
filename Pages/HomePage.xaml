@@ -87,6 +87,11 @@
                 Clicked="OnPlayClicked" />
 
             <Button
+                Text="STATISTICS"
+                Style="{StaticResource VaultSecondaryButton}"
+                Clicked="OnStatisticsClicked" />
+
+            <Button
                 Text="HOW TO PLAY"
                 Style="{StaticResource VaultOutlineButton}"
                 Clicked="OnHowToPlayClicked" />
