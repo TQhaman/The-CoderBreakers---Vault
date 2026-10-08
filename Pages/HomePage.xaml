@@ -24,7 +24,7 @@
                     SemanticProperties.HeadingLevel="Level1" />
                 <Label
                     Text="THE CODEBREAKERS"
-                    TextColor="{StaticResource VaultPurple}"
+                    TextColor="{StaticResource VaultPurpleText}"
                     FontSize="13"
                     FontAttributes="Bold"
                     CharacterSpacing="3"

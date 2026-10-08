@@ -88,7 +88,7 @@
                         <Label Grid.Row="1" Text="Guess" TextColor="{StaticResource VaultMuted}" />
                         <Label Grid.Row="1" Grid.Column="1" Text="856" TextColor="{StaticResource VaultText}" FontSize="21" FontAttributes="Bold" CharacterSpacing="4" />
                         <Label Grid.Row="2" Text="Result" TextColor="{StaticResource VaultMuted}" />
-                        <Label Grid.Row="2" Grid.Column="1" Text="1 Hit  ·  2 Matches" TextColor="{StaticResource VaultPurple}" FontSize="16" FontAttributes="Bold" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="1 Hit  ·  2 Matches" TextColor="{StaticResource VaultPurpleText}" FontSize="16" FontAttributes="Bold" />
                     </Grid>
                     <Label
                         Text="The 6 is a Hit. The 8 and 5 are both in the secret, but they are in the wrong positions, so they are Matches."
@@ -97,7 +97,7 @@
                         LineHeight="1.25" />
                     <Label
                         Text="These are teaching examples only. VAULT never reveals the active secret while you are playing."
-                        TextColor="{StaticResource VaultError}"
+                        TextColor="{StaticResource VaultMuted}"
                         FontSize="13" />
                 </VerticalStackLayout>
             </Border>

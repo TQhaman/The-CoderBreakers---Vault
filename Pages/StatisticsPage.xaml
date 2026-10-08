@@ -89,10 +89,10 @@
                         <Label x:Name="ExpertWinRateLabel" Grid.Row="2" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
 
                         <Label Grid.Row="3" Text="Best Score" TextColor="{StaticResource VaultMuted}" />
-                        <Label x:Name="ExpertBestScoreLabel" Grid.Row="3" Grid.Column="1" TextColor="{StaticResource VaultPurple}" FontAttributes="Bold" />
+                        <Label x:Name="ExpertBestScoreLabel" Grid.Row="3" Grid.Column="1" TextColor="{StaticResource VaultPurpleText}" FontAttributes="Bold" />
 
                         <Label Grid.Row="4" Text="Best Time" TextColor="{StaticResource VaultMuted}" />
-                        <Label x:Name="ExpertBestTimeLabel" Grid.Row="4" Grid.Column="1" TextColor="{StaticResource VaultPurple}" FontAttributes="Bold" />
+                        <Label x:Name="ExpertBestTimeLabel" Grid.Row="4" Grid.Column="1" TextColor="{StaticResource VaultPurpleText}" FontAttributes="Bold" />
                     </Grid>
                 </VerticalStackLayout>
             </Border>

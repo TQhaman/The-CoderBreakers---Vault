@@ -26,6 +26,7 @@
     <Color x:Key="VaultBorder">#303747</Color>
     <Color x:Key="VaultGreen">#41FF8A</Color>
     <Color x:Key="VaultPurple">#7C4DFF</Color>
+    <Color x:Key="VaultPurpleText">#B69CFF</Color>
     <Color x:Key="VaultText">#F4F7FA</Color>
     <Color x:Key="VaultMuted">#9BA5B5</Color>
     <Color x:Key="VaultError">#FF6B7A</Color>

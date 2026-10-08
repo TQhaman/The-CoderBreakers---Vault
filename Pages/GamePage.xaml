@@ -30,7 +30,7 @@
             <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="End">
                 <Label
                     x:Name="DifficultyLabel"
-                    TextColor="{StaticResource VaultPurple}"
+                    TextColor="{StaticResource VaultPurpleText}"
                     FontSize="14"
                     FontAttributes="Bold"
                     HorizontalTextAlignment="End" />
@@ -145,7 +145,7 @@
                                         FontSize="14" />
                                     <Label
                                         Text="{Binding Matches, StringFormat='{0} Match(es)'}"
-                                        TextColor="{StaticResource VaultPurple}"
+                                        TextColor="{StaticResource VaultPurpleText}"
                                         FontSize="14" />
                                 </HorizontalStackLayout>
                             </Grid>
