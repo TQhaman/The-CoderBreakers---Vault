@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Microsoft.Maui.Dispatching;
 using The_codebreakers___The_Vault.GameLogic;
 
 namespace The_codebreakers___The_Vault.Pages
@@ -7,8 +8,11 @@ namespace The_codebreakers___The_Vault.Pages
     {
         private readonly ObservableCollection<GuessResult> _visibleHistory = new();
         private GameEngine? _gameEngine;
+        private IDispatcherTimer? _gameTimer;
         private string _nickname = "Player";
         private int _codeLength = 3;
+        private int _elapsedSeconds;
+        private bool _isQuitConfirmationOpen;
 
         public GamePage()
         {
@@ -33,6 +37,7 @@ namespace The_codebreakers___The_Vault.Pages
 
         private void StartGame()
         {
+            StopGameTimer();
             _gameEngine = new GameEngine(_codeLength);
             _visibleHistory.Clear();
 
@@ -46,6 +51,45 @@ namespace The_codebreakers___The_Vault.Pages
             CheckGuessButton.IsEnabled = true;
             ValidationLabel.IsVisible = false;
             FeedbackLabel.IsVisible = false;
+
+            StartGameTimer();
+        }
+
+        private void StartGameTimer()
+        {
+            _elapsedSeconds = 0;
+            ElapsedTimeLabel.Text = FormatElapsedTime(_elapsedSeconds);
+
+            _gameTimer = Dispatcher.CreateTimer();
+            _gameTimer.Interval = TimeSpan.FromSeconds(1);
+            _gameTimer.IsRepeating = true;
+            _gameTimer.Tick += OnGameTimerTick;
+            _gameTimer.Start();
+        }
+
+        private void OnGameTimerTick(object? sender, EventArgs e)
+        {
+            _elapsedSeconds++;
+            ElapsedTimeLabel.Text = FormatElapsedTime(_elapsedSeconds);
+        }
+
+        private void StopGameTimer()
+        {
+            if (_gameTimer is null)
+            {
+                return;
+            }
+
+            _gameTimer.Stop();
+            _gameTimer.Tick -= OnGameTimerTick;
+            _gameTimer = null;
+        }
+
+        private static string FormatElapsedTime(int totalSeconds)
+        {
+            int totalMinutes = totalSeconds / 60;
+            int remainingSeconds = totalSeconds % 60;
+            return $"{totalMinutes:D2}:{remainingSeconds:D2}";
         }
 
         private async void OnCheckGuessClicked(object? sender, EventArgs e)
@@ -78,6 +122,7 @@ namespace The_codebreakers___The_Vault.Pages
                 return;
             }
 
+            StopGameTimer();
             CheckGuessButton.IsEnabled = false;
             GuessEntry.IsEnabled = false;
 
@@ -95,7 +140,8 @@ namespace The_codebreakers___The_Vault.Pages
                 ["Nickname"] = _nickname,
                 ["CodeLength"] = _gameEngine.CodeLength,
                 ["GuessCount"] = _gameEngine.GuessCount,
-                ["SecretCode"] = revealedSecretCode
+                ["SecretCode"] = revealedSecretCode,
+                ["ElapsedSeconds"] = _elapsedSeconds
             };
 
             await Shell.Current.GoToAsync(nameof(ResultsPage), navigationParameters);
@@ -103,16 +149,37 @@ namespace The_codebreakers___The_Vault.Pages
 
         private async void OnQuitGameClicked(object? sender, EventArgs e)
         {
-            bool shouldQuit = await DisplayAlert(
-                "Quit Game?",
-                "Your current game and guess history will be abandoned.",
-                "Quit",
-                "Cancel");
+            _isQuitConfirmationOpen = true;
+            bool shouldQuit;
+
+            try
+            {
+                shouldQuit = await DisplayAlert(
+                    "Quit Game?",
+                    "Your current game and guess history will be abandoned.",
+                    "Quit",
+                    "Cancel");
+            }
+            finally
+            {
+                _isQuitConfirmationOpen = false;
+            }
 
             if (shouldQuit)
             {
+                StopGameTimer();
                 await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
             }
+        }
+
+        protected override void OnDisappearing()
+        {
+            if (!_isQuitConfirmationOpen)
+            {
+                StopGameTimer();
+            }
+
+            base.OnDisappearing();
         }
     }
 }

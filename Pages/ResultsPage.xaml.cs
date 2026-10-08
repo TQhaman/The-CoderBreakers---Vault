@@ -28,11 +28,23 @@ namespace The_codebreakers___The_Vault.Pages
                 ? secretCodeValue?.ToString() ?? string.Empty
                 : string.Empty;
 
+            int elapsedSeconds = query.TryGetValue("ElapsedSeconds", out object? elapsedSecondsValue)
+                ? Convert.ToInt32(elapsedSecondsValue)
+                : 0;
+
             SuccessLabel.Text = $"Excellent work, {_nickname}!";
             PlayerResultLabel.Text = _nickname;
             DifficultyResultLabel.Text = _codeLength == 4 ? "Expert · 4 digits" : "Normal · 3 digits";
             GuessCountResultLabel.Text = guessCount.ToString();
             SecretCodeLabel.Text = secretCode;
+            ElapsedTimeResultLabel.Text = FormatElapsedTime(elapsedSeconds);
+        }
+
+        private static string FormatElapsedTime(int totalSeconds)
+        {
+            int totalMinutes = totalSeconds / 60;
+            int remainingSeconds = totalSeconds % 60;
+            return $"{totalMinutes:D2}:{remainingSeconds:D2}";
         }
 
         private async void OnPlayAgainClicked(object? sender, EventArgs e)

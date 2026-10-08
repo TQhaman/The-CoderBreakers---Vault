@@ -49,13 +49,15 @@
             </Border>
 
             <Border Style="{StaticResource VaultCard}">
-                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="12">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="12">
                     <Label Text="Player" TextColor="{StaticResource VaultMuted}" />
                     <Label x:Name="PlayerResultLabel" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
                     <Label Grid.Row="1" Text="Difficulty" TextColor="{StaticResource VaultMuted}" />
                     <Label x:Name="DifficultyResultLabel" Grid.Row="1" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
                     <Label Grid.Row="2" Text="Total guesses" TextColor="{StaticResource VaultMuted}" />
                     <Label x:Name="GuessCountResultLabel" Grid.Row="2" Grid.Column="1" TextColor="{StaticResource VaultText}" FontAttributes="Bold" />
+                    <Label Grid.Row="3" Text="Completion time" TextColor="{StaticResource VaultMuted}" />
+                    <Label x:Name="ElapsedTimeResultLabel" Grid.Row="3" Grid.Column="1" TextColor="{StaticResource VaultGreen}" FontAttributes="Bold" />
                 </Grid>
             </Border>
 

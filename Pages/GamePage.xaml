@@ -35,6 +35,14 @@
                     FontAttributes="Bold"
                     HorizontalTextAlignment="End" />
                 <Label
+                    x:Name="ElapsedTimeLabel"
+                    Text="00:00"
+                    TextColor="{StaticResource VaultGreen}"
+                    FontSize="22"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="End"
+                    SemanticProperties.Description="Elapsed game time" />
+                <Label
                     x:Name="GuessCountLabel"
                     Text="Guesses: 0"
                     TextColor="{StaticResource VaultMuted}"
