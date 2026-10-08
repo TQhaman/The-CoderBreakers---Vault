@@ -47,10 +47,7 @@ namespace The_codebreakers___The_Vault.Pages
 
         private async void OnHowToPlayClicked(object? sender, EventArgs e)
         {
-            await DisplayAlert(
-                "How to Play",
-                "The full guide will be added in the next phase. For now, enter unique digits and use the hit and match clues to crack the code.",
-                "Got it");
+            await Shell.Current.GoToAsync(nameof(HowToPlayPage));
         }
     }
 }

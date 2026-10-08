@@ -9,6 +9,7 @@
             Routing.RegisterRoute(nameof(Pages.GamePage), typeof(Pages.GamePage));
             Routing.RegisterRoute(nameof(Pages.ResultsPage), typeof(Pages.ResultsPage));
             Routing.RegisterRoute(nameof(Pages.StatisticsPage), typeof(Pages.StatisticsPage));
+            Routing.RegisterRoute(nameof(Pages.HowToPlayPage), typeof(Pages.HowToPlayPage));
         }
     }
 }

@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using Microsoft.Maui.Devices;
 using Microsoft.Maui.Dispatching;
 using The_codebreakers___The_Vault.GameLogic;
 using The_codebreakers___The_Vault.Services;
@@ -59,7 +61,7 @@ namespace The_codebreakers___The_Vault.Pages
             GuessEntry.IsEnabled = true;
             CheckGuessButton.IsEnabled = true;
             ValidationLabel.IsVisible = false;
-            FeedbackLabel.IsVisible = false;
+            FeedbackCard.IsVisible = false;
 
             StartGameTimer();
         }
@@ -114,19 +116,28 @@ namespace The_codebreakers___The_Vault.Pages
             {
                 ValidationLabel.Text = result.ErrorMessage;
                 ValidationLabel.IsVisible = true;
-                FeedbackLabel.IsVisible = false;
+                FeedbackCard.IsVisible = false;
                 return;
             }
 
             ValidationLabel.IsVisible = false;
             FeedbackLabel.Text = $"{result.Hits} Hit(s)  ·  {result.Matches} Match(es)";
-            FeedbackLabel.IsVisible = true;
             GuessCountLabel.Text = $"Guesses: {_gameEngine.GuessCount}";
             _visibleHistory.Add(result);
             GuessEntry.Text = string.Empty;
 
+            CheckGuessButton.IsEnabled = false;
+            GuessEntry.IsEnabled = false;
+            TryPerformHapticFeedback(
+                result.IsWin
+                    ? HapticFeedbackType.LongPress
+                    : HapticFeedbackType.Click);
+            await AnimateValidGuessFeedbackAsync();
+
             if (!result.IsWin)
             {
+                CheckGuessButton.IsEnabled = true;
+                GuessEntry.IsEnabled = true;
                 GuessEntry.Focus();
                 return;
             }
@@ -136,8 +147,6 @@ namespace The_codebreakers___The_Vault.Pages
                 _gameEngine.CodeLength,
                 _gameEngine.GuessCount,
                 _elapsedSeconds);
-            CheckGuessButton.IsEnabled = false;
-            GuessEntry.IsEnabled = false;
 
             string? revealedSecretCode = _gameEngine.RevealedSecretCode;
 
@@ -158,6 +167,84 @@ namespace The_codebreakers___The_Vault.Pages
             };
 
             await Shell.Current.GoToAsync(nameof(ResultsPage), navigationParameters);
+        }
+
+        private async Task AnimateValidGuessFeedbackAsync()
+        {
+            FeedbackCard.CancelAnimations();
+            FeedbackCard.Scale = 0.90;
+            FeedbackCard.Opacity = 0.35;
+            FeedbackCard.IsVisible = true;
+
+            try
+            {
+                await Task.WhenAll(
+                    FeedbackCard.ScaleTo(1.03, 280, Easing.CubicOut),
+                    FeedbackCard.FadeTo(1, 280, Easing.CubicOut));
+
+                await FeedbackCard.ScaleTo(1, 120, Easing.CubicInOut);
+            }
+            catch (Exception)
+            {
+                // Animation feedback is optional and must not interrupt a guess.
+            }
+            finally
+            {
+                FeedbackCard.Scale = 1;
+                FeedbackCard.Opacity = 1;
+            }
+        }
+
+        private static void TryPerformHapticFeedback(HapticFeedbackType feedbackType)
+        {
+            try
+            {
+                if (OperatingSystem.IsAndroid() && feedbackType == HapticFeedbackType.Click)
+                {
+                    bool isVibrationSupported = Vibration.Default.IsSupported;
+
+#if DEBUG
+                    Debug.WriteLine($"VAULT vibration supported: {isVibrationSupported}");
+#endif
+
+                    if (isVibrationSupported)
+                    {
+#if DEBUG
+                        Debug.WriteLine("VAULT vibration requested: 100 ms");
+#endif
+                        Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100));
+#if DEBUG
+                        Debug.WriteLine("VAULT vibration request completed: 100 ms");
+#endif
+                    }
+
+                    return;
+                }
+
+                bool isSupported = HapticFeedback.Default.IsSupported;
+
+#if DEBUG
+                Debug.WriteLine($"VAULT haptics supported: {isSupported}");
+#endif
+
+                if (isSupported)
+                {
+#if DEBUG
+                    Debug.WriteLine($"VAULT haptic requested: {feedbackType}");
+#endif
+                    HapticFeedback.Default.Perform(feedbackType);
+#if DEBUG
+                    Debug.WriteLine($"VAULT haptic request completed: {feedbackType}");
+#endif
+                }
+            }
+            catch (Exception exception)
+            {
+#if DEBUG
+                Debug.WriteLine($"VAULT haptic request failed: {exception.Message}");
+#endif
+                // Haptics are optional feedback and must never interrupt gameplay.
+            }
         }
 
         private async void OnQuitGameClicked(object? sender, EventArgs e)

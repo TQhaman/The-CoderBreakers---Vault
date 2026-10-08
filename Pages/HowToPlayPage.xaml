@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="The_codebreakers___The_Vault.Pages.HowToPlayPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource VaultBackground}"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="28,44,28,32"
+            Spacing="18"
+            HorizontalOptions="Center"
+            MaximumWidthRequest="620">
+
+            <VerticalStackLayout Spacing="3">
+                <Label
+                    Text="VAULT"
+                    TextColor="{StaticResource VaultGreen}"
+                    FontSize="36"
+                    FontAttributes="Bold"
+                    CharacterSpacing="5"
+                    HorizontalTextAlignment="Center" />
+                <Label
+                    Text="HOW TO PLAY"
+                    TextColor="{StaticResource VaultPurple}"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    HorizontalTextAlignment="Center"
+                    SemanticProperties.HeadingLevel="Level1" />
+            </VerticalStackLayout>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="OBJECTIVE" TextColor="{StaticResource VaultGreen}" FontSize="18" FontAttributes="Bold" />
+                    <Label
+                        Text="Crack the secret code by guessing its digits. Use each Hit and Match as a clue until every digit is a Hit."
+                        TextColor="{StaticResource VaultText}"
+                        FontSize="16"
+                        LineHeight="1.25" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="NORMAL MODE" TextColor="{StaticResource VaultGreen}" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="• The secret contains 3 digits.&#10;• Every digit is different.&#10;• The first digit is not zero."
+                           TextColor="{StaticResource VaultText}" FontSize="15" LineHeight="1.35" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="EXPERT MODE" TextColor="{StaticResource VaultPurple}" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="• The secret contains 4 digits.&#10;• Every digit is different.&#10;• The first digit is not zero."
+                           TextColor="{StaticResource VaultText}" FontSize="15" LineHeight="1.35" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="HIT" TextColor="{StaticResource VaultGreen}" FontSize="20" FontAttributes="Bold" />
+                    <Label Text="A Hit means: correct digit + correct position."
+                           TextColor="{StaticResource VaultText}" FontSize="16" FontAttributes="Bold" />
+                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,*" ColumnSpacing="14" RowSpacing="6">
+                        <Label Text="Secret" TextColor="{StaticResource VaultMuted}" />
+                        <Label Grid.Column="1" Text="586" TextColor="{StaticResource VaultGreen}" FontSize="21" FontAttributes="Bold" CharacterSpacing="4" />
+                        <Label Grid.Row="1" Text="Guess" TextColor="{StaticResource VaultMuted}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="526" TextColor="{StaticResource VaultText}" FontSize="21" FontAttributes="Bold" CharacterSpacing="4" />
+                    </Grid>
+                    <Label
+                        Text="The 5 and 6 are Hits because both are in their correct positions. The 2 is not in the secret."
+                        TextColor="{StaticResource VaultMuted}"
+                        FontSize="14"
+                        LineHeight="1.25" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="MATCH" TextColor="{StaticResource VaultPurple}" FontSize="20" FontAttributes="Bold" />
+                    <Label Text="A Match means: correct digit + wrong position."
+                           TextColor="{StaticResource VaultText}" FontSize="16" FontAttributes="Bold" />
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*" ColumnSpacing="14" RowSpacing="6">
+                        <Label Text="Secret" TextColor="{StaticResource VaultMuted}" />
+                        <Label Grid.Column="1" Text="586" TextColor="{StaticResource VaultGreen}" FontSize="21" FontAttributes="Bold" CharacterSpacing="4" />
+                        <Label Grid.Row="1" Text="Guess" TextColor="{StaticResource VaultMuted}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="856" TextColor="{StaticResource VaultText}" FontSize="21" FontAttributes="Bold" CharacterSpacing="4" />
+                        <Label Grid.Row="2" Text="Result" TextColor="{StaticResource VaultMuted}" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="1 Hit  ·  2 Matches" TextColor="{StaticResource VaultPurple}" FontSize="16" FontAttributes="Bold" />
+                    </Grid>
+                    <Label
+                        Text="The 6 is a Hit. The 8 and 5 are both in the secret, but they are in the wrong positions, so they are Matches."
+                        TextColor="{StaticResource VaultMuted}"
+                        FontSize="14"
+                        LineHeight="1.25" />
+                    <Label
+                        Text="These are teaching examples only. VAULT never reveals the active secret while you are playing."
+                        TextColor="{StaticResource VaultError}"
+                        FontSize="13" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="GAMEPLAY STEPS" TextColor="{StaticResource VaultGreen}" FontSize="18" FontAttributes="Bold" />
+                    <Label
+                        Text="1. Enter your nickname.&#10;2. Choose Normal or Expert.&#10;3. Start the game.&#10;4. Enter a guess.&#10;5. Select Check Guess.&#10;6. Use Hits and Matches as clues.&#10;7. Continue until every digit is a Hit.&#10;8. Try to beat your best score and time."
+                        TextColor="{StaticResource VaultText}"
+                        FontSize="15"
+                        LineHeight="1.35" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource VaultCard}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="GOOD TO KNOW" TextColor="{StaticResource VaultPurple}" FontSize="18" FontAttributes="Bold" />
+                    <Label
+                        Text="• Duplicate digits are not allowed.&#10;• Invalid guesses do not increase the guess counter.&#10;• The timer measures how long the game takes.&#10;• Previous valid guesses remain visible.&#10;• Quit abandons the current game.&#10;• Statistics stores performance information locally on this device."
+                        TextColor="{StaticResource VaultText}"
+                        FontSize="15"
+                        LineHeight="1.35" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button
+                Text="BACK TO HOME"
+                Style="{StaticResource VaultSecondaryButton}"
+                Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

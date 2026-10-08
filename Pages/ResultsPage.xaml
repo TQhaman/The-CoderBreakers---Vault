@@ -8,10 +8,13 @@
 
     <ScrollView>
         <VerticalStackLayout
+            x:Name="ResultsContent"
             Padding="28,52,28,32"
             Spacing="22"
             HorizontalOptions="Center"
-            MaximumWidthRequest="520">
+            MaximumWidthRequest="520"
+            Opacity="0"
+            Scale="0.88">
 
             <VerticalStackLayout Spacing="6">
                 <Label

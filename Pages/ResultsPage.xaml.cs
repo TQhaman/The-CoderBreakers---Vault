@@ -10,6 +10,12 @@ namespace The_codebreakers___The_Vault.Pages
             InitializeComponent();
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await AnimateResultsEntranceAsync();
+        }
+
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             _nickname = query.TryGetValue("Nickname", out object? nicknameValue)
@@ -38,6 +44,31 @@ namespace The_codebreakers___The_Vault.Pages
             GuessCountResultLabel.Text = guessCount.ToString();
             SecretCodeLabel.Text = secretCode;
             ElapsedTimeResultLabel.Text = FormatElapsedTime(elapsedSeconds);
+        }
+
+        private async Task AnimateResultsEntranceAsync()
+        {
+            ResultsContent.CancelAnimations();
+            ResultsContent.Opacity = 0;
+            ResultsContent.Scale = 0.88;
+
+            try
+            {
+                await Task.Delay(50);
+
+                await Task.WhenAll(
+                    ResultsContent.FadeTo(1, 550, Easing.CubicOut),
+                    ResultsContent.ScaleTo(1, 550, Easing.CubicOut));
+            }
+            catch (Exception)
+            {
+                // Results remain readable even if animation is unavailable.
+            }
+            finally
+            {
+                ResultsContent.Opacity = 1;
+                ResultsContent.Scale = 1;
+            }
         }
 
         private static string FormatElapsedTime(int totalSeconds)

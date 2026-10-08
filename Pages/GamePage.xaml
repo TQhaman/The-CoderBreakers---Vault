@@ -79,12 +79,21 @@
                     TextColor="{StaticResource VaultError}"
                     FontSize="14"
                     IsVisible="False" />
-                <Label
-                    x:Name="FeedbackLabel"
-                    TextColor="{StaticResource VaultGreen}"
-                    FontSize="17"
-                    FontAttributes="Bold"
-                    IsVisible="False" />
+                <Border
+                    x:Name="FeedbackCard"
+                    Padding="12,10"
+                    BackgroundColor="{StaticResource VaultSurfaceAlt}"
+                    Stroke="{StaticResource VaultGreen}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    IsVisible="False">
+                    <Label
+                        x:Name="FeedbackLabel"
+                        TextColor="{StaticResource VaultGreen}"
+                        FontSize="17"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center" />
+                </Border>
             </VerticalStackLayout>
         </Border>
 
