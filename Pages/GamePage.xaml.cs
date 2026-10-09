@@ -58,6 +58,7 @@ namespace The_codebreakers___The_Vault.Pages
             GuessCountLabel.Text = "Guesses: 0";
             GuessEntry.Text = string.Empty;
             GuessEntry.MaxLength = _codeLength;
+            GuessEntry.Placeholder = _codeLength == 4 ? "e.g. 5862" : "e.g. 586";
             GuessEntry.IsEnabled = true;
             CheckGuessButton.IsEnabled = true;
             ValidationLabel.IsVisible = false;
@@ -132,6 +133,12 @@ namespace The_codebreakers___The_Vault.Pages
                 result.IsWin
                     ? HapticFeedbackType.LongPress
                     : HapticFeedbackType.Click);
+
+            if (result.IsWin)
+            {
+                await VictorySoundService.PlayAsync();
+            }
+
             await AnimateValidGuessFeedbackAsync();
 
             if (!result.IsWin)
